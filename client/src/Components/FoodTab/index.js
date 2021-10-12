@@ -26,12 +26,7 @@ const MobileTabs = () => {
       name: "Night life",
       
     },
-    {
-      id: `nutri`,
-      icon: <IoNutritionOutline />,
-      name: "Nutrition",
-      
-    },
+    
   ]);
   const { type } = useParams();
   return (
@@ -93,16 +88,7 @@ const LargeTabs = () => {
 
       name: "Night life",
     },
-    {
-      id: `nutri`,
-      imageDefault:
-        "https://b.zmtcdn.com/data/o2_assets/54cad8274d3c3ec7129e0808a13b27c31616582882.png",
-      imageActive:
-        "https://b.zmtcdn.com/data/o2_assets/0f6dcb1aef93fa03ea3f91f37918f3bc1616649503.png",
-      activeColor: "yellow",
-
-      name: "Nutrition",
-    },
+    
   ]);
 
   const { type } = useParams();
