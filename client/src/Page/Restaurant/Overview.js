@@ -10,18 +10,46 @@ import MenuCollection from "../../Components/restaurant/MenuCollection";
 import MenuSimilarRestaurantcard from "../../Components/restaurant/MenuSimilarRestaurantcard";
 import { NextArrow, PrevArrow } from "../../Components/CarousalArrow";
 import ReviewCard from "../../Components/restaurant/Reviews/reviewCard";
+import Mapview from "../../Components/restaurant/Mapview";
 
 const Overview = () => {
   const { id } = useParams();
 
   const settings = {
-    arrows: true,
-    infinite: true,
+    dots: true,
+    infinite: false,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const ratingChanged = (newRating) => {
@@ -46,7 +74,10 @@ const Overview = () => {
             <MenuCollection
               menuTitle="Menu"
               pages="3"
-              image="https://b.zmtcdn.com/data/menus/920/19438920/21fa39744f465abc5f947f1e9319fb5d.jpg?fit=around%7C200%3A200&crop=200%3A200%3B%2A%2C%2A"
+              image={[
+                "https://b.zmtcdn.com/data/menus/920/19438920/21fa39744f465abc5f947f1e9319fb5d.jpg",
+                "https://images.unsplash.com/photo-1526382551041-3c817fc3d478?dpr=2&auto=format&w=1024&h=1024",
+              ]}
             />
           </div>
           <h4 className="text-lg font-medium my-4">Cuisines</h4>
@@ -106,6 +137,14 @@ const Overview = () => {
               activeColor="#ffd700"
             />
           </div>
+          <div className="my-4 w-full  md:hidden flex flex-col gap-4">
+            <Mapview
+              title="Mumbai Xpress"
+              phno="+911212121212"
+              mapLocation={[12.988134202889283, 77.59405893120281]}
+              address="15, Sigma Central Mall, Cunningham Road, vijayawada, Andhra Pradesh"
+            />
+          </div>
           <div className="my-4 flex flex-col gap-4">
             <ReviewCard />
             <ReviewCard />
@@ -114,32 +153,15 @@ const Overview = () => {
         </div>
         <aside
           style={{ height: "fit-content" }}
-          className="hidden md:block md:w-4/12 sticky rounded-xl top-2 bg-white p-3 shadow-md"
+          className="hidden md:flex md:w-4/12 sticky rounded-xl top-2 bg-white p-3 shadow-md flex flex-col gap-4"
         >
-          <div>
-            <h4 className="text-xl font-medium">Call</h4>
-            <h5 className="text-zomato-400 font-medium">+918047192229</h5>
-          </div>
-          <div>
-            <h4 className="text-xl font-medium">Direction</h4>
-            <div className="w-full h-48">
-              <MapContainer
-                center={[12.988134202889283, 77.59405893120281]}
-                zoom={13}
-                scrollWheelZoom={false}
-              >
-                <TileLayer
-                  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-                <Marker position={[12.988134202889283, 77.59405893120281]}>
-                  <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                  </Popup>
-                </Marker>
-              </MapContainer>
-            </div>
-          </div>
+            <Mapview
+            title="Mumbai Xpress"
+            phno="+911212121212"
+            mapLocation={[12.988134202889283, 77.59405893120281]}
+            address="15, Sigma Central Mall, Cunningham Road, vijayawada, Andhra Pradesh"
+          />
+          
         </aside>
       </div>
     </>

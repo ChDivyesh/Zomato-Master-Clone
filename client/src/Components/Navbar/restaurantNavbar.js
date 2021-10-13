@@ -47,7 +47,7 @@ const LargeNav = () => {
               </span>
               <input
                 type="text"
-                placeholder="Bengaluru"
+                placeholder="Vijayawada"
                 className=" focus:outline-none"
               />
               <IoMdArrowDropdown />
